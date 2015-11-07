@@ -1,12 +1,43 @@
 # Warp Theme Framework #
 
-- Version: 7.3.7
-- Date: July 2015
+- Version: 7.3.14
+- Date: October 2015
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 
 ## Changelog
+
+    7.3.14
+    - Removed article meta information options (J)
+
+    7.3.13
+    ^ Updated UIkit to 2.23.0
+    + Added article meta information options (J)
+    ^ Updated language files
+
+    7.3.12
+    + Added support for svgs as datauri
+
+    7.3.11
+    # Fixed missing bootstrap js if bootstrap loading is enabled
+    # Fixed icon selection in module settings
+
+    7.3.10
+    ^ Updated UIkit to 2.22.0
+    + Keep custom link classes (WP)
+    # Fixed Wordpress 4.3 compatibility
+
+    7.3.9
+    ^ Updated UIkit sticky.js component for the latest sticky navigation features
+
+    7.3.8
+    + Added Ukrainian translation file (J)
+    # Fixed keep current selected layout in template options (J)
+    # Fixed save failed on compile LESS
+    # Fixed archive override for custom post_type (WP)
+    # Fixed multisite check (W)
+    # Fixed option-set return value (W)
 
     7.3.7
     # Fixed missing closing <a> tag in article override (J)
@@ -14,7 +45,7 @@
     # Fixed 'max_input_vars' error on save/close template settings (J)
     # Fixed article links override (J)
     # Fixed empty config saving
-    
+
     7.3.6
     ^ Updated UIkit to 2.21.0
     # Fixed returnURL of hidden articles after user login

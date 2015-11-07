@@ -33,7 +33,7 @@
 	"tracking_code": "",
 	"layouts": {
 		"default": {
-			"style": "PackPay",
+			"style": "default",
 			"article": "",
 			"fixed_navigation": "1",
 			"sidebars": {
@@ -790,6 +790,20 @@
 				"medium": "1",
 				"small": "1"
 			}
+		},
+		"206": {
+			"class": "",
+			"panel": "",
+			"icon": "",
+			"badge": {
+				"type": "uk-panel-badge uk-badge",
+				"text": ""
+			},
+			"display": {
+				"large": "1",
+				"medium": "1",
+				"small": "1"
+			}
 		}
 	},
 	"menus": {
@@ -1244,6 +1258,34 @@
 		"424": {
 			"columns": "1",
 			"columnwidth": "",
+			"icon": "",
+			"subtitle": ""
+		},
+		"447": {
+			"columns": "1",
+			"columnwidth": "",
+			"icon": "",
+			"subtitle": ""
+		},
+		"448": {
+			"columns": "1",
+			"columnwidth": "",
+			"icon": "",
+			"subtitle": ""
+		},
+		"449": {
+			"columns": "1",
+			"columnwidth": "",
+			"icon": "",
+			"subtitle": ""
+		},
+		"450": {
+			"columns": "1",
+			"columnwidth": "",
+			"icon": "",
+			"subtitle": ""
+		},
+		"451": {
 			"icon": "",
 			"subtitle": ""
 		}
