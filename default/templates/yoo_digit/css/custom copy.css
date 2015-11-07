@@ -1,0 +1,35 @@
+.uk-button-primary {
+	background-color: #d42731;
+	color: #ffffff;
+}
+
+.tm-headerbar-small {
+	background: #d42731;
+}
+
+
+.tm-position-divider{
+	
+	background: url(../../../images/bg_body.png);
+}
+
+
+.tm-content{
+	background: #fff;
+	padding:30px 30px;
+}
+
+p.chrono_credits{
+	display:none;
+}
+
+.tm-headerbar-plain {
+background: #d42731;
+}
+
+
+.gbs3 .form-horizontal .form-group {
+
+width: 287px;
+float: left;
+}

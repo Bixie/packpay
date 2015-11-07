@@ -1,0 +1,62 @@
+      <paths name="Packpay">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/default" web="/" />
+            <mapping deploy="/administrator/components/com_bixprintshop" local="$PROJECT_DIR$/printshop-component/component/administrator" web="/" />
+            <mapping deploy="/components/com_bixprintshop" local="$PROJECT_DIR$/printshop-component/component/frontend" web="/" />
+            <mapping deploy="plugins/bixprintshop/adres_postcodefill" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop/adres_postcodefill" web="/" />
+            <mapping deploy="plugins/bixprintshop/import_verzamel" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop/import_verzamel" web="/" />
+            <mapping deploy="plugins/bixprintshop/jscript_machinecalc" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop/jscript_machinecalc" web="/" />
+            <mapping deploy="plugins/bixprintshop/jscript_verzameltabel" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop/jscript_verzameltabel" web="/" />
+            <mapping deploy="plugins/bixprintshop/upload_uikit" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop/upload_uikit" web="/" />
+            <mapping deploy="plugins/bixprintshop_betaal/bix_ideal" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_betaal/bix_ideal" web="/" />
+            <mapping deploy="plugins/bixprintshop_betaal/couponcode" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_betaal/couponcode" web="/" />
+            <mapping deploy="plugins/bixprintshop_betaal/invoice_default" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_betaal/invoice_default" web="/" />
+            <mapping deploy="plugins/bixprintshop_betaal/rekening" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_betaal/rekening" web="/" />
+            <mapping deploy="plugins/bixprintshop_machine/digitaal" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_machine/digitaal" web="/" />
+            <mapping deploy="plugins/bixprintshop_mail/default" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_mail/default" web="/" />
+            <mapping deploy="plugins/bixprintshop_mail/order" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_mail/order" web="/" />
+            <mapping deploy="plugins/bixprintshop_order/bestandsthumb" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_order/bestandsthumb" web="/" />
+            <mapping deploy="plugins/bixprintshop_vervoer/standaardvervoer" local="$PROJECT_DIR$/printshop-component/plugins/bixprintshop_vervoer/standaardvervoer" web="/" />
+            <mapping deploy="plugins/quickicon/bps_quickicon" local="$PROJECT_DIR$/printshop-component/plugins/quickicon/bps_quickicon" web="/" />
+            <mapping deploy="plugins/search/bixprintshop" local="$PROJECT_DIR$/printshop-component/plugins/search/bixprintshop" web="/" />
+            <mapping deploy="plugins/system/bixprintshop" local="$PROJECT_DIR$/printshop-component/plugins/system/bixprintshop" web="/" />
+            <mapping deploy="plugins/user/bps_profile" local="$PROJECT_DIR$/printshop-component/plugins/user/bps_profile" web="/" />
+            <mapping deploy="administrator/modules/mod_bps_orders" local="$PROJECT_DIR$/printshop-component/modules/administrator/mod_bps_orders" web="/" />
+            <mapping deploy="administrator/modules/mod_bps_stats" local="$PROJECT_DIR$/printshop-component/modules/administrator/mod_bps_stats" web="/" />
+            <mapping deploy="modules/mod_bps_adminuser" local="$PROJECT_DIR$/printshop-component/modules/frontend/mod_bps_adminuser" web="/" />
+            <mapping deploy="modules/mod_bps_cart" local="$PROJECT_DIR$/printshop-component/modules/frontend/mod_bps_cart" web="/" />
+            <mapping deploy="modules/mod_bps_debug" local="$PROJECT_DIR$/printshop-component/modules/frontend/mod_bps_debug" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/demo" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/configuration.php" />
+            <excludedPath path="/configuration.php" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/administrator/components/com_bixprintshop" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/components/com_bixprintshop" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop/adres_postcodefill" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop/import_verzamel" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop/jscript_machinecalc" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop/jscript_verzameltabel" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop/upload_uikit" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_betaal/bix_ideal" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_betaal/couponcode" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_betaal/invoice_default" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_betaal/rekening" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_machine/digitaal" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_mail/default" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_mail/order" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_order/bestandsthumb" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/bixprintshop_vervoer/standaardvervoer" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/quickicon/bps_quickicon" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/search/bixprintshop" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/system/bixprintshop" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/plugins/user/bps_profile" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/administrator/modules/mod_bps_orders" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/administrator/modules/mod_bps_stats" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/modules/mod_bps_adminuser" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/modules/mod_bps_cart" />
+            <excludedPath local="true" path="$PROJECT_DIR$/default/modules/mod_bps_debug" />
+          </excludedPaths>
+        </serverdata>
+      </paths>

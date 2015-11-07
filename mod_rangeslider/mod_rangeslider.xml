@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>MOD_RANGESLIDER</name>
+	<author>Matthijs Alles</author>
+	<creationDate>July 2015</creationDate>
+	<copyright>Copyright (C) 2015 Bixie. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later</license>
+	<authorEmail>admin@bixie.nl</authorEmail>
+	<authorUrl>www.bixie.nl</authorUrl>
+	<version>1.0</version>
+	<description>MOD_RANGESLIDER_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_rangeslider">mod_rangeslider.php</filename>
+		<folder>tmpl</folder>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="nl-NL">language/nl-NL/nl-NL.mod_rangeslider.ini</language>
+		<language tag="nl-NL">language/nl-NL/nl-NL.mod_rangeslider.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+						name="start"
+						type="text"
+						default="1"
+						label="MOD_RANGESLIDER_PARAMS_START"
+						description="" />
+
+				<field
+						name="min"
+						type="text"
+						default="0"
+						label="MOD_RANGESLIDER_PARAMS_MIN"
+						description="" />
+
+				<field
+						name="max"
+						type="text"
+						default="1000"
+						label="MOD_RANGESLIDER_PARAMS_MAX"
+						description="" />
+
+				<field
+						name="step"
+						type="text"
+						default="1"
+						label="MOD_RANGESLIDER_PARAMS_STEP"
+						description="" />
+
+				<field
+						name="factor"
+						type="text"
+						default="1"
+						label="MOD_RANGESLIDER_PARAMS_FACTOR"
+						description="" />
+
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field
+						name="layout"
+						type="modulelayout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static">Static</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

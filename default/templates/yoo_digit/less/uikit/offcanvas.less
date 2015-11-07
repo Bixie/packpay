@@ -1,0 +1,63 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Off-canvas
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@offcanvas-z-index:                                 @global-z-index;
+@offcanvas-bar-background:                          @global-secondary-background;
+
+@offcanvas-panel-margin:                            20px 20px;
+@offcanvas-panel-color:                             fade(@global-contrast-color, 70%);
+@offcanvas-panel-title-color:                       @global-primary-background;
+@offcanvas-panel-link-color:                        @global-contrast-color;
+@offcanvas-panel-link-hover-color:                  @global-contrast-color;
+
+//
+// New
+//
+
+@offcanvas-nav-sub-border:                          lighten(@offcanvas-bar-background, 2%);
+
+
+// Component
+// ========================================================================
+
+.hook-offcanvas() {}
+
+
+// Sub-object `uk-offcanvas-bar`
+// ========================================================================
+
+.hook-offcanvas-bar() {
+
+    ul.uk-nav-sub { padding: 5px 0 5px 25px; }
+
+}
+
+
+// Panel in offcanvas
+// ========================================================================
+
+.hook-offcanvas-panel() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-offcanvas-misc() {
+
+    .uk-offcanvas .uk-nav-sub { border-top: 1px solid @offcanvas-nav-sub-border; }
+
+    .uk-offcanvas .uk-search-field:focus,
+    .uk-offcanvas .uk-active .uk-search-field,
+    .uk-offcanvas .uk-search-field,
+    .uk-offcanvas .uk-search-field { padding-left: 20px; }
+
+    .uk-offcanvas .uk-search { margin: 0; }
+
+}

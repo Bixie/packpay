@@ -1,0 +1,81 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Navbar
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@navbar-background:                                 rgba(0,0,0,0);
+@navbar-color:                                      fade(@global-contrast-color, 50%);
+@navbar-link-color:                                 @global-link-color;
+@navbar-link-hover-color:                           @global-link-hover-color;
+
+@navbar-nav-height:                                 140px;
+@navbar-nav-line-height:                            @navbar-nav-height;
+@navbar-nav-padding-horizontal:                     0px;
+@navbar-nav-color:                                  @global-contrast-color;
+@navbar-nav-font-size:                              round((@global-font-size * 1.125));
+@navbar-nav-font-family:                            @base-body-font-family;
+@navbar-nav-hover-background:                       rgba(0,0,0,0);
+@navbar-nav-hover-color:                            @global-secondary-background;
+@navbar-nav-onclick-background:                     rgba(0,0,0,0);
+@navbar-nav-onclick-color:                          @global-secondary-background;
+@navbar-nav-active-background:                      rgba(0,0,0,0);
+@navbar-nav-active-color:                           @global-secondary-background;
+@navbar-nav-subtitle-font-size:                     12px;
+@navbar-nav-subtitle-offset:                        4px;
+
+@navbar-brand-font-size:                            round((@global-font-size * 1.25));
+@navbar-brand-color:                                @global-contrast-color;
+@navbar-brand-hover-color:                          @global-link-hover-color;
+
+@navbar-toggle-font-size:                           round((@global-font-size * 1.25));
+@navbar-toggle-color:                               @global-contrast-color;
+@navbar-toggle-hover-color:                         @global-contrast-color;
+
+
+// Component
+// ========================================================================
+
+.hook-navbar() {}
+
+
+// Sub-object: `uk-navbar-nav`
+// ========================================================================
+
+.hook-navbar-nav() {}
+
+// Hover
+.hook-navbar-nav-hover() {}
+
+// OnClick
+.hook-navbar-nav-onclick() {}
+
+// Active
+.hook-navbar-nav-active() {}
+
+
+// Sub-object: `uk-navbar-content`
+// ========================================================================
+
+.hook-navbar-content() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-navbar-misc() {
+
+    .uk-navbar-nav > li { margin: 0 10px; }
+
+    .uk-navbar-brand { margin-left: -4px; }
+
+    .uk-navbar-nav li a {
+		-webkit-transition: color 0.1s ease-in-out, height 0.4s ease-in-out, line-height 0.4s ease-in-out !important;
+		transition: color 0.1s ease-in-out, height 0.4s ease-in-out, line-height 0.4s ease-in-out !important;
+	}
+
+}

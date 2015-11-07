@@ -1,0 +1,866 @@
+vagrantfile:
+    target: local
+    vm:
+        box: puphpet/debian75-x64
+        box_url: puphpet/debian75-x64
+        hostname: packpay.puphpet
+        memory: '1024'
+        cpus: '1'
+        chosen_provider: virtualbox
+        network:
+            private_network: 192.168.56.101
+            forwarded_port:
+                vflnp_cb9lhpcyspp9:
+                    host: '8480'
+                    guest: '22'
+        post_up_message: ''
+        provider:
+            virtualbox:
+                modifyvm:
+                    natdnshostresolver1: 'on'
+                showgui: '0'
+            vmware:
+                numvcpus: 1
+            parallels:
+                cpus: 1
+        provision:
+            puppet:
+                manifests_path: puphpet/puppet
+                manifest_file: site.pp
+                module_path: puphpet/puppet/modules
+                options:
+                    - '--verbose'
+                    - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            563e2006b7793:
+                source: ./
+                target: /var/www
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7794:
+                source: ./printshop-component/component/administrator
+                target: /var/www/default/administrator/components/com_bixprintshop
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7795:
+                source: ./printshop-component/component/frontend
+                target: /var/www/default/components/com_bixprintshop
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7796:
+                source: ./printshop-component/plugins/bixprintshop/adres_postcodefill
+                target: /var/www/default/plugins/bixprintshop/adres_postcodefill
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7797:
+                source: ./printshop-component/plugins/bixprintshop/import_verzamel
+                target: /var/www/default/plugins/bixprintshop/import_verzamel
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7798:
+                source: ./printshop-component/plugins/bixprintshop/jscript_machinecalc
+                target: /var/www/default/plugins/bixprintshop/jscript_machinecalc
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b7799:
+                source: ./printshop-component/plugins/bixprintshop/jscript_verzameltabel
+                target: /var/www/default/plugins/bixprintshop/jscript_verzameltabel
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779a:
+                source: ./printshop-component/plugins/bixprintshop/upload_uikit
+                target: /var/www/default/plugins/bixprintshop/upload_uikit
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779b:
+                source: ./printshop-component/plugins/bixprintshop_betaal/bix_ideal
+                target: /var/www/default/plugins/bixprintshop_betaal/bix_ideal
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779c:
+                source: ./printshop-component/plugins/bixprintshop_betaal/couponcode
+                target: /var/www/default/plugins/bixprintshop_betaal/couponcode
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779d:
+                source: ./printshop-component/plugins/bixprintshop_betaal/invoice_default
+                target: /var/www/default/plugins/bixprintshop_betaal/invoice_default
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779e:
+                source: ./printshop-component/plugins/bixprintshop_betaal/rekening
+                target: /var/www/default/plugins/bixprintshop_betaal/rekening
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b779f:
+                source: ./printshop-component/plugins/bixprintshop_machine/digitaal
+                target: /var/www/default/plugins/bixprintshop_machine/digitaal
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a0:
+                source: ./printshop-component/plugins/bixprintshop_mail/default
+                target: /var/www/default/plugins/bixprintshop_mail/default
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a1:
+                source: ./printshop-component/plugins/bixprintshop_mail/order
+                target: /var/www/default/plugins/bixprintshop_mail/order
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a2:
+                source: ./printshop-component/plugins/bixprintshop_order/bestandsthumb
+                target: /var/www/default/plugins/bixprintshop_order/bestandsthumb
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a3:
+                source: ./printshop-component/plugins/bixprintshop_vervoer/standaardvervoer
+                target: /var/www/default/plugins/bixprintshop_vervoer/standaardvervoer
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a4:
+                source: ./printshop-component/plugins/quickicon/bps_quickicon
+                target: /var/www/default/plugins/quickicon/bps_quickicon
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a5:
+                source: ./printshop-component/plugins/search/bixprintshop
+                target: /var/www/default/plugins/search/bixprintshop
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a6:
+                source: ./printshop-component/plugins/system/bixprintshop
+                target: /var/www/default/plugins/system/bixprintshop
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a7:
+                source: ./printshop-component/plugins/user/bps_profile
+                target: /var/www/default/plugins/user/bps_profile
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a8:
+                source: ./printshop-component/modules/administrator/mod_bps_orders
+                target: /var/www/default/administrator/modules/mod_bps_orders
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77a9:
+                source: ./printshop-component/modules/administrator/mod_bps_stats
+                target: /var/www/default/administrator/modules/mod_bps_stats
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77aa:
+                source: ./printshop-component/modules/frontend/mod_bps_adminuser
+                target: /var/www/default/modules/mod_bps_adminuser
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77ab:
+                source: ./printshop-component/modules/frontend/mod_bps_cart
+                target: /var/www/default/modules/mod_bps_cart
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+            563e2006b77ac:
+                source: ./printshop-component/modules/frontend/mod_bps_debug
+                target: /var/www/default/modules/mod_bps_debug
+                sync_type: default
+                smb:
+                    smb_host: ''
+                    smb_username: ''
+                    smb_password: ''
+                rsync:
+                    args:
+                        - '--verbose'
+                        - '--archive'
+                        - '-z'
+                    exclude:
+                        - .vagrant/
+                        - .git/
+                    auto: 'true'
+                owner: www-data
+                group: www-data
+        usable_port_range:
+            start: 10200
+            stop: 10500
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: detect
+server:
+    install: '1'
+    packages: {  }
+users_groups:
+    install: '1'
+    groups: {  }
+    users: {  }
+locale:
+    install: '1'
+    settings:
+        default_locale: ''
+        locales:
+            - en_GB.UTF-8
+            - en_US.UTF-8
+firewall:
+    install: '1'
+    rules: {  }
+cron:
+    install: '1'
+    jobs: {  }
+nginx:
+    install: '0'
+    settings:
+        default_vhost: 1
+        proxy_buffer_size: 128k
+        proxy_buffers: '4 256k'
+    upstreams: {  }
+    vhosts:
+        nxv_fn73meb1ndr2:
+            server_name: awesome.dev
+            server_aliases:
+                - www.awesome.dev
+            www_root: /var/www/awesome
+            listen_port: '80'
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            client_max_body_size: 1m
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_port: '443'
+            ssl_protocols: ''
+            ssl_ciphers: ''
+            rewrite_to_https: '1'
+            spdy: '1'
+            locations:
+                nxvl_zj73peeubd7w:
+                    location: /
+                    autoindex: 'off'
+                    internal: 'false'
+                    try_files:
+                        - $uri
+                        - $uri/
+                        - /index.php$is_args$args
+                    fastcgi: ''
+                    fastcgi_index: ''
+                    fastcgi_split_path: ''
+                nxvl_bq7jma5srycf:
+                    location: '~ \.php$'
+                    autoindex: 'off'
+                    internal: 'false'
+                    try_files:
+                        - $uri
+                        - $uri/
+                        - /index.php$is_args$args
+                    fastcgi: '127.0.0.1:9000'
+                    fastcgi_index: index.php
+                    fastcgi_split_path: '^(.+\.php)(/.*)$'
+                    fast_cgi_params_extra:
+                        - 'SCRIPT_FILENAME $request_filename'
+                        - 'APP_ENV dev'
+    proxies: {  }
+apache:
+    install: '1'
+    settings:
+        user: www-data
+        group: www-data
+        default_vhost: true
+        manage_user: false
+        manage_group: false
+        sendfile: 0
+    modules:
+        - proxy_fcgi
+        - rewrite
+    vhosts:
+        av_hf85gta54z02:
+            servername: packpay.dev
+            serveraliases:
+                - www.packpay.dev
+            docroot: /var/www/default
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            custom_fragment: ''
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+            ssl_protocol: ''
+            ssl_cipher: ''
+            directories:
+                avd_98q4t37ybxxp:
+                    path: /var/www/default
+                    options:
+                        - Indexes
+                        - FollowSymlinks
+                        - MultiViews
+                    allow_override:
+                        - All
+                    require:
+                        - 'all granted'
+                    custom_fragment: ''
+                    files_match:
+                        avdfm_j5zh8k23o4jw:
+                            path: \.php$
+                            sethandler: 'proxy:fcgi://127.0.0.1:9000'
+                            custom_fragment: ''
+                            provider: filesmatch
+                    provider: directory
+php:
+    install: '1'
+    settings:
+        version: '56'
+    modules:
+        php:
+            - cli
+            - intl
+            - mcrypt
+            - gd
+            - imagick
+            - curl
+        pear: {  }
+        pecl: {  }
+    ini:
+        display_errors: 'On'
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+        date.timezone: UTC
+        max_execution_time: '90'
+        post_max_size: 64M
+        upload_max_filesize: 64M
+    fpm_ini:
+        error_log: /var/log/php-fpm.log
+    fpm_pools:
+        phpfp_zmbw8vqeh969:
+            ini:
+                prefix: www
+                listen: '127.0.0.1:9000'
+                security.limit_extensions: .php
+                user: www-user
+                group: www-data
+    composer: '1'
+    composer_home: ''
+xdebug:
+    install: '1'
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9010'
+        xdebug.idekey: PHPSTORM
+        xdebug.profiler_output_dir: /var/www/profiling
+        xdebug.profiler_output_name: cachegrind.out.%p
+blackfire:
+    install: '0'
+    settings:
+        server_id: ''
+        server_token: ''
+        agent:
+            http_proxy: ''
+            https_proxy: ''
+            log_file: stderr
+            log_level: '1'
+        php:
+            agent_timeout: '0.25'
+            log_file: ''
+            log_level: '1'
+xhprof:
+    install: '0'
+wpcli:
+    install: '0'
+    version: v0.19.0
+drush:
+    install: '0'
+    version: 6.3.0
+ruby:
+    install: '1'
+    versions: {  }
+python:
+    install: '1'
+    packages: {  }
+    versions: {  }
+nodejs:
+    install: '1'
+    npm_packages: {  }
+hhvm:
+    install: '0'
+    nightly: 0
+    composer: '1'
+    composer_home: ''
+    settings: {  }
+    server_ini:
+        hhvm.server.host: 127.0.0.1
+        hhvm.server.port: '9000'
+        hhvm.log.use_log_file: '1'
+        hhvm.log.file: /var/log/hhvm/error.log
+    php_ini:
+        display_errors: 'On'
+        error_reporting: '-1'
+        date.timezone: UTC
+mysql:
+    install: '1'
+    settings:
+        version: '5.6'
+        root_password: plop0999
+        override_options: {  }
+    adminer: 0
+    users:
+        mysqlnu_57b2ui6ytsfa:
+            name: packpal_dev
+            password: plop0999
+    databases:
+        mysqlnd_1v35p7l42vuq:
+            name: packpal
+            sql: /vagrant/sql/packpal_dev.sql
+    grants:
+        mysqlng_oog78sqw017r:
+            user: packpal_dev
+            table: '*.*'
+            privileges:
+                - ALL
+mariadb:
+    install: '0'
+    settings:
+        version: '10.0'
+        root_password: '123'
+        override_options: {  }
+    adminer: 0
+    users:
+        mariadbnu_lr35i5s02t1s:
+            name: dbuser
+            password: '123'
+    databases:
+        mariadbnd_a9iqyg0tdv1o:
+            name: dbname
+            sql: ''
+    grants:
+        mariadbng_k8k2dxljosfq:
+            user: dbuser
+            table: '*.*'
+            privileges:
+                - ALL
+postgresql:
+    install: '0'
+    settings:
+        global:
+            encoding: UTF8
+            version: '9.3'
+        server:
+            postgres_password: '123'
+    databases: {  }
+    users: {  }
+    grants: {  }
+    adminer: 0
+mongodb:
+    install: '0'
+    settings:
+        auth: 1
+        bind_ip: 127.0.0.1
+        port: '27017'
+    databases: {  }
+redis:
+    install: '0'
+    settings:
+        conf_port: '6379'
+sqlite:
+    install: '0'
+    adminer: 0
+    databases: {  }
+mailcatcher:
+    install: '0'
+    settings:
+        smtp_ip: 0.0.0.0
+        smtp_port: 1025
+        http_ip: 0.0.0.0
+        http_port: '1080'
+        mailcatcher_path: /usr/local/rvm/wrappers/default
+        from_email_method: inline
+beanstalkd:
+    install: '0'
+    settings:
+        listenaddress: 0.0.0.0
+        listenport: '13000'
+        maxjobsize: '65535'
+        maxconnections: '1024'
+        binlogdir: /var/lib/beanstalkd/binlog
+        binlogfsync: null
+        binlogsize: '10485760'
+    beanstalk_console: 0
+rabbitmq:
+    install: '0'
+    settings:
+        port: '5672'
+    users: {  }
+    vhosts: {  }
+    plugins: {  }
+elastic_search:
+    install: '0'
+    settings:
+        version: 1.4.1
+        java_install: true
+solr:
+    install: '0'
+    settings:
+        version: 4.10.2
+        port: '8984'
+
