@@ -7,6 +7,7 @@
 deployment.xml
 addondata.json
 deletemappeddrives.bat
+drivemappings.yaml
 /puphpet.zip
 /puphpet/files
 /!puphpet/files/*/empty
