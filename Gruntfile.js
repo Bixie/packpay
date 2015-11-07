@@ -26,27 +26,8 @@ module.exports = function (grunt) {
     };
 
     var fs = require('fs'), php_js;
-    var db = require('node-mysql');
-    var DB = db.DB;
-    var BaseRow = db.Row;
-    var BaseTable = db.Table;
-    var box = new DB(configuration.dbase);
 
-    function getExtensionsFromDB (cb) {
-        box.connect(function(conn, cb) {
-            cps.seq([
-                function(_, cb) {
-                    conn.query("select * from @extensions where element = 'bixprintshop'".replace('@', configuration.dbase.prefix), cb);
-                },
-                function(res, cb) {
-                    console.log(res);
-                    cb();
-                }
-            ], cb);
-        }, cb);
-    }
-
-    function uniqid (prefix, more_entropy) {
+    function uniqid(prefix, more_entropy) {
         if (prefix === undefined) {
             prefix = "";
         }
@@ -108,62 +89,74 @@ module.exports = function (grunt) {
         return yaml.join("\n");
     }
 
-    function getProjectIndex() {
+    function getAddonsData() {
 
-        getExtensionsFromDB(function (data) {
-            console.log(data);
-            fs.writeFileSync('data.json', JSON.stringify(data));
-        });
-
-        if (fs.existsSync('projectindex.json')) {
-            var projectIndex = grunt.file.readJSON("projectindex.json");
+        if (fs.existsSync('addondata.json')) {
+            var addondata = grunt.file.readJSON("addondata.json");
             grunt.log.writeln("Bestaande index geladen");
-            grunt.log.writeln(projectIndex.addons.length + ' addons geladen: ' + projectIndex.addons.map(function (addon) {
-                return addon.title;
+            grunt.log.writeln(addondata.length + ' addons geladen: ' + addondata.map(function (addon) {
+                return addon.name;
             }).join(", "));
-            return projectIndex;
+            return addondata;
         }
-        grunt.task.run('indexproject');
-        return grunt.file.readJSON("projectindex.json");
+        grunt.log.writeln("Creëer eerst de addondata.json in VM!");
+        return [];
     }
 
-    function setDriveMappings(projectIndex) {
-        var meta = grunt.config.get('meta'), mappings = [], bat = [], deploy = [], deployMappings = meta.defaultDeploys,  deployExcludes = meta.defaultExcludes;
+    function setDriveMappings(addondata) {
+        var meta = grunt.config.get('meta'),
+            xmlpoke = grunt.config.get('xmlpoke'),
+            mappings = [],
+            bat = [],
+            deploy = [],
+            deployMappings = meta.defaultDeploys,
+            deployExcludes = meta.defaultExcludes;
         grunt.log.writeln("");
         //default mappings
         mappings.push("        synced_folder:");
         mappings.push(getMappingYaml('', '')); //root
         mappings.push(getMappingYaml('printshop-component/component/administrator', '/default/administrator/components/com_bixprintshop'));
         mappings.push(getMappingYaml('printshop-component/component/frontend', '/default/components/com_bixprintshop'));
+        bat.push("del /s /q \"C:\\BixiePrintshop\\%projectfolder%\\%webRoot%\\administrator\\components\\com_bixprintshop\""
+            .replace('%projectfolder%', meta.projectfolder).replace('%webRoot%', meta.webRoot));
+        bat.push("del /s /q \"C:\\BixiePrintshop\\%projectfolder%\\%webRoot%\\components\\com_bixprintshop\""
+            .replace('%projectfolder%', meta.projectfolder).replace('%webRoot%', meta.webRoot));
         deployMappings.push('            <mapping deploy="/" local="$PROJECT_DIR$/%webRoot%" web="/" />'.replace('%webRoot%', meta.webRoot));
         deployMappings.push('            <mapping deploy="/administrator/components/com_bixprintshop" local="$PROJECT_DIR$/%repoFolder%/component/administrator" web="/" />'.replace('%repoFolder%', meta.repoFolder));
         deployMappings.push('            <mapping deploy="/components/com_bixprintshop" local="$PROJECT_DIR$/%repoFolder%/component/frontend" web="/" />'.replace('%repoFolder%', meta.repoFolder));
-        projectIndex.addons.forEach(function (addon) {
+        addondata.forEach(function (addon) {
             //mappings for yaml
             mappings.push(getMappingYaml(addon.repopath, '/' + addon.webrootpath));
             //delete local webroot
-            bat.push("del /s /q \"C:\\BixiePrintshop\\%projectfolder%\\%target%\""
+            bat.push("del /s /q \"C:\\BixiePrintshop\\%projectfolder%\\%webRoot%\\%target%\""
                 .replace('%target%', addon.webrootpath.replace(/\//g, '\\'))
+                .replace('%webRoot%', meta.webRoot)
                 .replace('%projectfolder%', meta.projectfolder));
             //mappings deployment
-            deployMappings.push('            <mapping deploy="%deploypath%" local="$PROJECT_DIR$/%repopath%" web="/" />'
-                .replace('%deploypath%', addon.webrootpath.replace(meta.webRoot + '/', ''))
+            deployMappings.push('            <mapping deploy="/%deploypath%" local="$PROJECT_DIR$/%repoFolder%/%repopath%" web="/" />'
+                .replace('%deploypath%', addon.webrootpath)
+                .replace('%repoFolder%', meta.repoFolder)
                 .replace('%repopath%', addon.repopath));
-            deployExcludes.push('            <excludedPath local="true" path="$PROJECT_DIR$/%webrootpath%" />'.replace('%webrootpath%', addon.webrootpath));
-
+            deployExcludes.push('            <excludedPath local="true" path="$PROJECT_DIR$/%webRoot%/%webrootpath%" />'
+                .replace('%webrootpath%', addon.webrootpath).replace('%webRoot%', meta.webRoot));
 
         });
         //mappings deployment
-        deploy.push('      <paths name="%deploy%">'.replace('%deploy%', meta.deployName));
-        deploy.push('        <serverdata>');
+        deploy.push("\n" + '        <serverdata>');
         deploy.push('          <mappings>');
         deploy.push(deployMappings.join("\n"));
         deploy.push('          </mappings>');
         deploy.push('          <excludedPaths>');
         deploy.push(deployExcludes.join("\n"));
         deploy.push('          </excludedPaths>');
-        deploy.push('        </serverdata>');
-        deploy.push('      </paths>');
+        deploy.push('        </serverdata>' + "\n");
+        xmlpoke.updateDeployments.options.replacements.push({
+            xpath: "//paths[@name='" + configuration.deployName + "']",
+            value: deploy.join("\n"),
+            valueType: 'element'
+        });
+        grunt.config.set('xmlpoke', xmlpoke);
+
         //save files
         fs.writeFileSync('drivemappings.yaml', mappings.join("\n"));
         grunt.log.writeln("Mappingsbestand bijgewerkt, kopieer naar config.yaml");
@@ -173,145 +166,53 @@ module.exports = function (grunt) {
         grunt.log.writeln("deployment bijgewerkt");
     }
 
+    grunt.loadNpmTasks('grunt-xmlpoke');
+    grunt.loadNpmTasks('grunt-yaml');
+
     // Configuration goes here
     grunt.initConfig({
-        meta: configuration
+        meta: configuration,
+        xmlpoke: {
+            updateDeployments: {
+                options: {
+                    replacements: []
+                },
+                files: {
+                    './.idea/deployment.xml': './.idea/deployment.xml'
+                }
+            }
+        },
+        yaml: {
+            your_target: {
+                options: {
+                    ignored: /^_/,
+                    space: 4,
+                    customTypes: {
+                        '!include scalar': function(value, yamlLoader) {
+                            return yamlLoader(value);
+                        },
+                        '!max sequence': function(values) {
+                            return Math.max.apply(null, values);
+                        },
+                        '!extend mapping': function(value, yamlLoader) {
+                            return _.extend(yamlLoader(value.basePath), value.partial);
+                        }
+                    }
+                },
+                files: [
+                    {expand: true, cwd: 'yaml_directory/', src: ['**/*.yml'], dest: 'output_directory/'}
+                ]
+            }
+        }
     });
 
-    // Load plugins here
-    //grunt.loadNpmTasks('grunt-sync');
-
-    // Define your tasks here
-    grunt.registerTask('default', 'Index files', function () {
-        grunt.task.run('indexproject');
+    grunt.registerTask('default', 'Set drive mappings', function () {
+        grunt.task.run('drivemappings');
+        grunt.task.run('xmlpoke');
     });
-    grunt.registerTask('indexProjectFiles', ['indexproject']);
 
     grunt.registerTask('drivemappings', 'Get drive mappings for VM', function () {
-        setDriveMappings(getProjectIndex());
-    });
-
-
-    //index project files
-    grunt.registerTask('indexproject', 'Rebuilding project index.', function () {
-
-        var meta = grunt.config.get('meta'),
-            addons = [],
-            pluginFolders = ['bixprintshop', 'bixprintshop_attrib', 'bixprintshop_betaal', 'bixprintshop_machine',
-                'bixprintshop_mail', 'bixprintshop_order', 'bixprintshop_vervoer',
-                'content', 'quickicon', 'search', 'system', 'user'],
-            syncFolders = {
-                'component/administrator': [
-                    '**/*'
-                ],
-                'component/frontend': [
-                    '**/*'
-                ]
-            },
-            ignoreInWebroot = [
-                '**/config.json',
-                '**/Thumbs.db',
-                '**/log/*',
-                '**/uploads/*',
-                '**/tmp/*'
-            ],
-            crossFolders = {
-                'component/administrator': '/administrator/components/com_bixprintshop',
-                'component/frontend': '/components/com_bixprintshop'
-            },
-            countModule = 0,
-            countPlugin = 0;
-        grunt.log.writeln("Project indexeren...");
-        //scan for plugins
-        pluginFolders.forEach(function (f) {
-
-            if (fs.existsSync(meta.webRoot + '/plugins/' + f)) {
-
-                fs.readdirSync(meta.webRoot + '/plugins/' + f).forEach(function (a) {
-
-                    var addonpath = meta.webRoot + '/plugins/' + f + '/' + a,
-                        pattern = /(bps_[a-z]*|bixprintshop)/,
-                        addon;
-
-                    if (fs.lstatSync(addonpath).isDirectory() && (f.match(/bixprintshop?[_a-z*]/) || a.match(pattern))) {
-
-                        addon = {
-                            "title": (f + " - " + a.split("_").join(" ")).replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
-                                return $1.toUpperCase();
-                            }),
-                            "type": 'plugin',
-                            "name": a,
-                            "group": f,
-                            "client": 'administrator',
-                            "webrootpath": addonpath,
-                            "repopath": meta.repoFolder + '/plugins/' + f + '/' + a,
-                            "language": []
-                        };
-                        meta.langs.forEach(function (langTag) {
-                            addon.language.push(langTag + '/' + langTag + '.plg_' + f + '_' + a + '.ini');
-                            addon.language.push(langTag + '/' + langTag + '.plg_' + f + '_' + a + '.sys.ini');
-                            //syncFolders['language/administrator'].push(langTag + '/' + langTag + '.plg_' + f + '_' + a + '.*.ini');
-                        });
-
-                        //syncFolders.plugins.push(f + '/' + a + '/**/*');
-                        grunt.log.writeln(addon.title);
-                        addons.push(addon);
-                        countPlugin += 1;
-                    }
-                });
-
-            }
-        });
-        //scan for modules
-        [meta.webRoot + '/administrator/modules', meta.webRoot + '/modules'].forEach(function (f) {
-
-            if (fs.existsSync(f)) {
-
-                fs.readdirSync(f).forEach(function (a) {
-
-                    var addonpath = f + '/' + a,
-                        pattern = /(mod_bps_[a-z]*|mod_bbr_[a-z]*|mod_feedback)/,//|mod_mailchimp
-                        client = f.match(/administrator/) ? 'administrator' : 'frontend',
-                        addon;
-
-                    // Is it a directory?
-                    if (fs.lstatSync(addonpath).isDirectory() && a.match(pattern)) {
-
-                        addon = {
-                            "title": (client + " - " + a.split("_").join(" ")).replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
-                                return $1.toUpperCase();
-                            }),
-                            "type": 'module',
-                            "name": a,
-                            "group": '',
-                            "client": client,
-                            "webrootpath": addonpath,
-                            "repopath": meta.repoFolder + '/modules/' + client + '/' + a,
-                            "language": []
-                        };
-                        meta.langs.forEach(function (langTag) {
-                            addon.language.push(langTag + '/' + langTag + '.' + a + '.ini');
-                            addon.language.push(langTag + '/' + langTag + '.' + a + '.sys.ini');
-                        });
-
-                        grunt.log.writeln(addon.title);
-                        addons.push(addon);
-                        countModule += 1;
-                    }
-                });
-
-            }
-        });
-
-        grunt.log.writeln(countPlugin + ' plugins gevonden.');
-        grunt.log.writeln(countModule + ' modules gevonden.');
-
-        fs.writeFileSync('projectindex.json', JSON.stringify({
-            addons: addons,
-            crossFolders: crossFolders,
-            syncFolders: syncFolders,
-            ignoreInWebroot: ignoreInWebroot
-        }, " ", 4));
+        setDriveMappings(getAddonsData());
     });
 
 };

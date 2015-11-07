@@ -4,7 +4,7 @@
 
 .idea
 .vagrant
-projectindex.json
+deployment.xml
 addondata.json
 deletemappeddrives.bat
 /puphpet.zip

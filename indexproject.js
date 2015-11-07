@@ -50,7 +50,7 @@ getExtensionsFromDB(function (data) {
             repopath = webrootpath;
         }
         if (extension.type === 'module') {
-            if (extension.client) {
+            if (extension.client_id === 1) {
                 webrootpath = ['administrator', 'modules', extension.element].join('/');
                 repopath = ['modules', 'administrator', extension.element].join('/');;
             } else {

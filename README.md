@@ -54,8 +54,8 @@ _Doen bestaande klantrepo_
 
 _Bestanden syncen_
 
-* Controleer of de Printshop repo op de goede branche staat en kopieer de bestanden uit de repo naar de webroot door 
-`bash syncfromrepo.sh` in de SSH van de Vagrant uit te voeren.
-* Geef commando `grunt watch` in de console van de _lokale_ machine.
-* Ready to go!
-
+* index addons in Vagrant `node indexproject.js`
+* default Grunt task uitvoeren
+* deleteddrivemappings.bat uitvoeren
+* config.yaml bijwerken
+* provision en reload

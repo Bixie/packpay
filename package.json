@@ -15,6 +15,7 @@
   "devDependencies": {
     "cps": "*",
     "grunt": "~0.4.2",
+    "grunt-xmlpoke": "^0.8.0",
     "node-mysql": "^0.4.2",
     "underscore": "^1.8.3"
   }
