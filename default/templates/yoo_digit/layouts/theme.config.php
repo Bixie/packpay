@@ -148,10 +148,10 @@ $this['asset']->addFile('css', 'css:theme.css');
 $this['asset']->addFile('css', 'css:custom.css');
 
 // add scripts
-$this['asset']->addFile('js', 'js:uikit.js');
-$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/autocomplete.js');
-$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/search.js');
-$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/tooltip.js');
+//$this['asset']->addFile('js', 'js:uikit.js');
+//$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/autocomplete.js');
+//$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/search.js');
+//$this['asset']->addFile('js', 'warp:vendor/uikit/js/components/tooltip.js');
 $this['asset']->addFile('js', 'js:social.js');
 $this['asset']->addFile('js', 'js:theme.js');
 $this['asset']->addFile('js', 'js:circlechart.js');
