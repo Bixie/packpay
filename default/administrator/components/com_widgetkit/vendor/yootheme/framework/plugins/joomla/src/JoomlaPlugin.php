@@ -158,15 +158,17 @@ class JoomlaPlugin extends Plugin
             }
         }
 
-        foreach ($this['scripts'] as $script) {
-            if ($source = $script->getSource()) {
-                $this['joomla.document']->addScript(htmlentities($this['url']->to($source)));
-            } elseif ($content = $script->getContent()) {
-                $this['joomla.document']->addScriptDeclaration($content);
-            } elseif ($template = $script->getOption('template')) {
-                $this['joomla.document']->addCustomTag(sprintf("<script id=\"%s\" type=\"text/template\">%s</script>\n", $script->getName(), $this['view']->render($template)));
-            }
-        }
+		foreach ($this['scripts'] as $script) {
+			if ($source = $script->getSource() and ($this['admin'] || $script->getName() != 'uikit')) {
+				$this['joomla.document']->addScript(htmlentities($this['url']->to($source)));
+			} elseif ($content = $script->getContent()) {
+				if ($this['admin']) {
+					$this['joomla.document']->addScriptDeclaration($content);
+				}
+			} elseif ($template = $script->getOption('template')) {
+				$this['joomla.document']->addCustomTag(sprintf("<script id=\"%s\" type=\"text/template\">%s</script>\n", $script->getName(), $this['view']->render($template)));
+			}
+		}
     }
 
     /**
