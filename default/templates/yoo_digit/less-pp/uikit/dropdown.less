@@ -1,0 +1,94 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Dropdown
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@dropdown-z-index:                              (@global-z-index + 20);
+@dropdown-padding:                              30px;
+@dropdown-background:                           darken(@global-background, 2%);
+@dropdown-color:                                @global-color;
+
+@dropdown-divider-border:                       @global-border;
+
+@dropdown-small-padding:                        15px;
+
+@dropdown-navbar-margin:                        -25px;
+@dropdown-navbar-background:                    darken(@global-secondary-background, 2%);
+@dropdown-navbar-color:                         @global-contrast-color;
+@dropdown-navbar-animation:                     uk-slide-top-fixed;
+
+//
+// New
+//
+
+@dropdown-border-radius:                        @global-border-radius;
+@dropdown-navbar-box-shadow:                    rgba(0,0,0,0.05);
+@dropdown-navbar-traingle-color:                #f6f6f6;
+
+
+// Component
+// ========================================================================
+
+.hook-dropdown() { border-radius: @dropdown-border-radius; }
+
+
+// Modifier: `uk-dropdown-navbar`
+// ========================================================================
+
+.hook-dropdown-navbar() {
+
+    border-radius: 0;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: -17px;
+        left: 0;
+        width: 0px;
+        height: 0px;
+        border-width: 0 20px 20px 0px;
+        border-style: solid;
+        border-color: transparent transparent @dropdown-navbar-background;
+    }
+
+    .uk-nav .uk-nav-header { border-bottom: 1px solid fade(@global-contrast-color, 10%); }
+
+}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-dropdown-misc() {
+
+    .uk-dropdown-flip.uk-dropdown-navbar:before {
+        left: inherit;
+        right: 0;
+        border-width: 0 0 20px 20px;
+        border-color: transparent transparent @dropdown-navbar-background;
+    }
+
+    .uk-dropdown-center.uk-dropdown-navbar:before {
+        left: (50% - 10px);
+        border-width: 0 20px 20px 20px;
+        border-color: transparent transparent @dropdown-navbar-background;
+    }
+
+    .uk-dropdown-up.uk-dropdown-navbar:before {
+        top: 100%;
+        border-width: 0 0 20px 20px;
+        border-color: transparent @dropdown-navbar-background transparent;
+    }
+
+    .uk-dropdown .uk-nav { margin: 0; }
+
+    .uk-dropdown-navbar li a { color: @global-contrast-color; }
+
+    .uk-dropdown .uk-nav-header { font-size: round((@nav-header-font-size * 0.77 )); }
+
+}

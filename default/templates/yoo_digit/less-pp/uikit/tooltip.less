@@ -1,0 +1,34 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Tooltip
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@tooltip-z-index:                               (@global-z-index + 30);
+@tooltip-background:                            @global-primary-background;
+
+@tooltip-color:                                 @global-contrast-color;
+@tooltip-font-size:                             round((@global-font-size * 0.75));
+@tooltip-line-height:                           round((@tooltip-font-size * 1.2));
+
+//
+// New
+//
+
+@tooltip-border-radius:                         @global-border-radius;
+
+
+// Component
+// ========================================================================
+
+.hook-tooltip() { border-radius: @tooltip-border-radius;}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-tooltip-misc() {}

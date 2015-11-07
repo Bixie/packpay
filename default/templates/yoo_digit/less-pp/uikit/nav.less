@@ -1,0 +1,235 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Nav
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@nav-padding-vertical:                                  5px;
+@nav-padding-horizontal:                                5px;
+
+@nav-header-padding-vertical:                           @nav-padding-vertical;
+@nav-header-padding-horizontal:                         @nav-padding-horizontal;
+@nav-header-font-size:                                  @base-h3-font-size;
+@nav-header-font-weight:                                300;
+@nav-header-margin-top:                                 @global-margin;
+
+@nav-divider-margin-horizontal:                         @nav-padding-horizontal;
+
+@nav-subtitle-font-size:                                round((@global-font-size * 0.85));
+@nav-subtitle-line-height:                              round((@nav-subtitle-font-size * 1.5));
+
+@nav-sub-padding-left:                                  @nav-padding-horizontal;
+
+@nav-parent-icon:                                       "\f067";
+@nav-parent-open-icon:                                  "\f068";
+@nav-parent-icon-width:                                 8px;
+
+@nav-side-color:                                        @global-color;
+@nav-side-hover-background:                             rgba(0,0,0,0.0);
+@nav-side-hover-color:                                  @global-link-hover-color;
+@nav-side-active-background:                            rgba(0,0,0,0);
+@nav-side-active-color:                                 @global-link-hover-color;
+@nav-side-header-color:                                 @global-primary-background;
+@nav-side-divider-border:                               @global-border;
+@nav-side-nested-color:                                 fade(@global-color, 70%);
+@nav-side-nested-hover-color:                           @global-link-hover-color;
+
+@nav-dropdown-color:                                    @global-color;
+@nav-dropdown-hover-background:                         rgba(0,0,0,0);
+@nav-dropdown-hover-color:                              @global-link-hover-color;
+@nav-dropdown-header-color:                             @global-primary-background;
+@nav-dropdown-divider-border:                           @global-border;
+@nav-dropdown-nested-color:                             fade(@global-color, 70%);
+@nav-dropdown-nested-hover-color:                       @global-link-hover-color;
+
+@nav-navbar-color:                                      @global-color;
+@nav-navbar-hover-background:                           rgba(0,0,0,0);
+@nav-navbar-hover-color:                                @global-link-hover-color;
+@nav-navbar-header-color:                               @global-primary-background;
+@nav-navbar-divider-border:                             @global-border;
+@nav-navbar-nested-color:                               fade(@global-color, 70%);
+@nav-navbar-nested-hover-color:                         @global-link-hover-color;
+
+@nav-offcanvas-padding-vertical:                        15px;
+@nav-offcanvas-padding-horizontal:                      20px;
+@nav-offcanvas-color:                                   @offcanvas-panel-link-color;
+@nav-offcanvas-hover-background:                        rgba(0,0,0,0);
+@nav-offcanvas-hover-color:                             @global-link-hover-color;
+@nav-offcanvas-active-background:                       rgba(0,0,0,0);
+@nav-offcanvas-active-color:                            tint(@global-link-color, 50%);
+@nav-offcanvas-header-color:                            tint(@global-secondary-background, 40%);
+@nav-offcanvas-divider-border:                          darken(@offcanvas-bar-background, 2%);
+@nav-offcanvas-nested-color:                            @offcanvas-panel-link-color;
+@nav-offcanvas-nested-hover-color:                      @global-link-hover-color;
+
+//
+// New
+//
+
+@nav-active-color:                                      @global-link-hover-color;
+
+@nav-parent-icon-font-size:                             10px;
+
+@nav-header-border:                                     @global-border;
+
+@nav-header-letter-spacing:                             0.1em;
+
+@nav-sub-border:                                        fade(@global-border, 50%);
+
+@nav-offcanvas-border:                                  lighten(@offcanvas-bar-background, 2%);
+@nav-offcanvas-header-border:                           lighten(@offcanvas-bar-background, 5%);
+@nav-offcanvas-header-padding:                          @nav-offcanvas-padding-horizontal;
+
+
+// Sub-object: `uk-nav-header`
+// ========================================================================
+
+.hook-nav-header() {
+    border-bottom: 1px solid @nav-header-border;
+    letter-spacing: @nav-header-letter-spacing;
+}
+
+
+// Sub-object: `uk-nav-divider`
+// ========================================================================
+
+.hook-nav-divider() { }
+
+
+// Sub-object: `uk-nav-sub`
+// ========================================================================
+
+.hook-nav-sub() { border-top: 1px dotted @nav-sub-border; }
+
+
+// Modifier: `uk-nav-parent-icon`
+// ========================================================================
+
+.hook-nav-parent-icon() { font-size: @nav-parent-icon-font-size; }
+
+
+// Modifier `uk-nav-side`
+// ========================================================================
+
+//
+// Items
+//
+
+.hook-nav-side() { }
+
+// Hover
+.hook-nav-side-hover() { }
+
+// Active
+.hook-nav-side-active() { }
+
+//
+// Sub-object: `uk-nav-header`
+//
+
+.hook-nav-side-header() { }
+
+//
+// Sub-object: `uk-nav-divider`
+//
+
+.hook-nav-side-divider() { }
+
+
+// Modifier `uk-nav-dropdown`
+// ========================================================================
+
+//
+// Items
+//
+
+.hook-nav-dropdown() { }
+
+// Hover
+.hook-nav-dropdown-hover() { }
+
+//
+// Sub-object: `uk-nav-header`
+//
+
+.hook-nav-dropdown-header() { }
+
+//
+// Sub-object: `uk-nav-divider`
+//
+
+.hook-nav-dropdown-divider() { }
+
+
+// Modifier `uk-nav-navbar`
+// ========================================================================
+
+//
+// Items
+//
+
+.hook-nav-navbar() { }
+
+// Hover
+.hook-nav-navbar-hover() { }
+
+//
+// Sub-object: `uk-nav-header`
+//
+
+.hook-nav-navbar-header() { }
+
+//
+// Sub-object: `uk-nav-divider`
+//
+
+.hook-nav-navbar-divider() { }
+
+
+// Modifier `uk-nav-offcanvas`
+// ========================================================================
+
+.hook-nav-offcanvas-link() { }
+.hook-nav-offcanvas-link-hover() { }
+
+//
+// Items
+//
+
+.hook-nav-offcanvas() { border-top: 1px solid @nav-offcanvas-border; }
+
+// Hover
+.hook-nav-offcanvas-hover() { }
+
+// Active
+.hook-nav-offcanvas-active() { }
+
+//
+// Sub-object: `uk-nav-header`
+//
+
+.hook-nav-offcanvas-header() {
+    padding-left: @nav-offcanvas-header-padding;
+    border-color: @nav-offcanvas-header-border;
+}
+
+//
+// Sub-object: `uk-nav-divider`
+//
+
+.hook-nav-offcanvas-divider() { }
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-nav-misc() {
+
+    .uk-nav > li.uk-active > a,
+    .uk-nav-dropdown > li.uk-active > a { color: @nav-active-color; }
+
+}

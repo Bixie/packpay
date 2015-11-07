@@ -12,7 +12,7 @@ return array(
         'theme'   => array(__DIR__),
         'js'      => array(__DIR__.'/js'),
         'css'     => array(__DIR__.'/css'),
-        'less'    => array(__DIR__.'/less'),
+        'less'    => array(__DIR__.'/less-pp'),
         'layouts' => array(__DIR__.'/layouts')
     ),
 

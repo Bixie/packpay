@@ -1,0 +1,149 @@
+// Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+//
+// Component: Panel
+//
+// ========================================================================
+
+// Variables
+// ========================================================================
+
+@panel-title-margin-bottom:                         @global-margin;
+@panel-title-font-size:                             @base-h3-font-size;
+@panel-title-line-height:                           round((@panel-title-font-size * 1.5));
+@panel-title-font-weight:                           300;
+@panel-title-color:                                 @global-primary-background;
+@panel-title-text-transform:                        uppercase;
+
+@panel-box-padding:                                 (@global-margin * 2);
+@panel-box-background:                              #fff;
+@panel-box-color:                                   @global-color;
+@panel-box-title-color:                             @global-primary-background;
+@panel-box-badge-right:                             @panel-box-badge-top;
+@panel-box-primary-background:                      @global-primary-background;
+@panel-box-primary-color:                           tint(@global-primary-background, 80%);
+@panel-box-primary-title-color:                     @global-contrast-color;
+@panel-box-secondary-background:                    @global-secondary-background;
+@panel-box-secondary-color:                         lighten(@global-secondary-background, 30%);
+@panel-box-secondary-title-color:                   tint(@global-secondary-background, 70%);
+
+@panel-hover-padding:                               @global-margin;
+@panel-hover-hover-color:                           @global-color;
+@panel-hover-hover-background:                      @global-background;
+@panel-hover-teaser-margin:                         -(@panel-hover-padding + 1);
+
+@panel-header-title-border:                         @global-border;
+@panel-header-title-color:                          @global-primary-background;
+
+@panel-divider-gutter:                              @global-grid-gutter;
+@panel-divider-gutter-large:                        @global-grid-gutter-large;
+@panel-divider-border:                              @global-border;
+
+//
+// New
+//
+
+@panel-box-border:                                  @global-border;
+@panel-box-primary-border:                          @global-primary-background;
+@panel-box-secondary-border:                        @global-secondary-background;
+
+@panel-box-primary-link-color:                      shade(@global-primary-background, 30%);
+@panel-box-primary-link-hover-color:                shade(@global-primary-background, 50%);
+
+@panel-box-secondary-link-color:                    @global-link-color;
+@panel-box-secondary-link-hover-color:              @global-link-hover-color;
+
+@panel-box-primary-buttons-color:                   @global-contrast-color;
+@panel-box-primary-button-color:                    @global-color;
+
+@panel-box-secondary-buttons-color:                 @global-contrast-color;
+@panel-box-secondary-button-color:                  @global-color;
+
+@panel-hover-border:                                @global-border;
+
+
+// Sub-object: `uk-panel-title`
+// ========================================================================
+
+.hook-panel-title() {}
+
+
+// Sub-object: `uk-panel-badge`
+// ========================================================================
+
+.hook-panel-badge() {
+    padding: 5px 8px !important;
+    right: -1px !important;
+    top: -1px !important;
+    border-radius: 0 !important;
+}
+
+
+// Modifier: `uk-panel-box`
+// ========================================================================
+
+.hook-panel-box() { border: 1px solid @panel-box-border; }
+
+.hook-panel-box-hover() {}
+
+//
+// Sub-modifier: `uk-panel-box-primary`
+//
+
+.hook-panel-box-primary() {
+    border: 1px solid @panel-box-primary-border;
+
+    a { color: @panel-box-primary-link-color; }
+    a:hover { color: @panel-box-primary-link-hover-color; }
+
+}
+
+.hook-panel-box-primary-hover() {}
+
+//
+// Sub-modifier: `uk-panel-box-secondary`
+//
+
+.hook-panel-box-secondary() {
+    border: 1px solid @panel-box-secondary-border;
+
+    a { color: @panel-box-secondary-link-color; }
+    a:hover { color: @panel-box-secondary-link-hover-color; }
+
+}
+
+.hook-panel-box-secondary-hover() {}
+
+
+// Modifier: `uk-panel-hover`
+// ========================================================================
+
+.hook-panel-hover() { border: 1px solid transparent; }
+
+.hook-panel-hover-hover() { border-color: @panel-hover-border; }
+
+
+// Modifier: `uk-panel-header`
+// ========================================================================
+
+.hook-panel-header() {}
+
+
+// Miscellaneous
+// ========================================================================
+
+.hook-panel-misc() {
+
+    .uk-panel .uk-nav { margin: 0; }
+
+    .uk-panel-box-primary .uk-button.uk-button-primary,
+    .uk-panel-box-primary .uk-button.uk-button-success,
+    .uk-panel-box-primary .uk-button.uk-button-danger { color: @panel-box-primary-buttons-color; }
+    .uk-panel-box-primary .uk-button { color: @panel-box-primary-button-color; }
+
+    .uk-panel-box-secondary .uk-button.uk-button-primary,
+    .uk-panel-box-secondary .uk-button.uk-button-success,
+    .uk-panel-box-secondary .uk-button.uk-button-danger { color: @panel-box-secondary-buttons-color; }
+    .uk-panel-box-secondary .uk-button { color: @panel-box-secondary-button-color; }
+
+}
