@@ -2,23 +2,14 @@ module.exports = function (grunt) {
 
     "use strict";
     var configuration = {
-        projectfolder: 'packpay',
-        deployName: 'Packpay',
+        projectfolder: 'drukwerkcalculator',
+        deployName: 'Drukwerkcalculator 3',
+        template: 'yoo_digit',
         webRoot: 'default',
         repoFolder: 'printshop-component',
-        dbase: {
-            prefix   : 'packp_',
-            host     : 'localhost',
-            user     : 'packpal_dev',
-            password : 'plop0999',
-            database : 'packpal_dev'
-        },
         defaultExcludes: [
-            '            <excludedPath path="/demo" />',
             '            <excludedPath local="true" path="$PROJECT_DIR$/default/configuration.php" />',
             '            <excludedPath path="/configuration.php" />',
-            '            <excludedPath local="true" path="$PROJECT_DIR$/default/templates/yoo_digit/config.json" />',
-            '            <excludedPath path="/templates/yoo_digit/config.json" />',
             '            <excludedPath local="true" path="$PROJECT_DIR$/default/administrator/components/com_bixprintshop" />',
             '            <excludedPath local="true" path="$PROJECT_DIR$/default/components/com_bixprintshop" />'
         ],
@@ -95,8 +86,8 @@ module.exports = function (grunt) {
             var addondata = grunt.file.readJSON("addondata.json");
             grunt.log.writeln("Bestaande index geladen");
             grunt.log.writeln(addondata.length + ' addons geladen: ' + addondata.map(function (addon) {
-                return addon.name;
-            }).join(", "));
+                    return addon.name;
+                }).join(", "));
             return addondata;
         }
         grunt.log.writeln("Creëer eerst de addondata.json in VM!");
@@ -124,9 +115,13 @@ module.exports = function (grunt) {
         deployMappings.push('            <mapping deploy="/" local="$PROJECT_DIR$/%webRoot%" web="/" />'.replace('%webRoot%', meta.webRoot));
         deployMappings.push('            <mapping deploy="/administrator/components/com_bixprintshop" local="$PROJECT_DIR$/%repoFolder%/component/administrator" web="/" />'.replace('%repoFolder%', meta.repoFolder));
         deployMappings.push('            <mapping deploy="/components/com_bixprintshop" local="$PROJECT_DIR$/%repoFolder%/component/frontend" web="/" />'.replace('%repoFolder%', meta.repoFolder));
+        deployExcludes.push('            <excludedPath local="true" path="$PROJECT_DIR$/%webRoot%/templates/%template%/config.json" />'
+            .replace('%template%', meta.template).replace('%webRoot%', meta.webRoot));
+        deployExcludes.push('            <excludedPath path="/templates/%template%/config.json" />'.replace('%template%', meta.template));
+        //addons adden
         addondata.forEach(function (addon) {
             //mappings for yaml
-            mappings.push(getMappingYaml(addon.repopath, '/' + addon.webrootpath));
+            mappings.push(getMappingYaml(meta.repoFolder + '/' + addon.repopath, '/' + meta.webRoot + '/' + addon.webrootpath));
             //delete local webroot
             bat.push("del /s /q \"C:\\BixiePrintshop\\%projectfolder%\\%webRoot%\\%target%\""
                 .replace('%target%', addon.webrootpath.replace(/\//g, '\\'))
